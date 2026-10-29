@@ -3,12 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useSetAtom } from "jotai";
+import { isAuthenticatedAtom } from "@/atoms/banking-atoms";
 import {
   ArrowLeftRight,
   ChevronDown,
   CreditCard,
   LayoutDashboard,
-  // LogOut,
+  LogOut,
   Menu,
   ReceiptText,
   X,
@@ -28,6 +31,15 @@ export function BankingShell({ children }: { children: React.ReactNode }) {
 
   function closeMobileMenu() {
     setMobileMenuOpen(false);
+  }
+
+  const router = useRouter();
+  const setAuthenticated = useSetAtom(isAuthenticatedAtom);
+
+  function handleLogout() {
+    setAuthenticated(false);
+    closeMobileMenu();
+    router.replace("/login");
   }
 
   return (
@@ -122,6 +134,14 @@ export function BankingShell({ children }: { children: React.ReactNode }) {
             </div>
             <ChevronDown className="size-4 text-muted-foreground" />
           </div>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="mt-3 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
+          >
+            <LogOut className="size-4" />
+            Sign out
+          </button>
         </div>
       </aside>
 
