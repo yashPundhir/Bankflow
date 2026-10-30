@@ -7,6 +7,12 @@ import { useRouter } from "next/navigation";
 import { useSetAtom } from "jotai";
 import { isAuthenticatedAtom } from "@/atoms/banking-atoms";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   ArrowLeftRight,
   ChevronDown,
   CreditCard,
@@ -87,13 +93,10 @@ export function BankingShell({ children }: { children: React.ReactNode }) {
           </button>
         </div>
 
-        <div className="px-4 pb-2 pt-7">
-          <p className="px-3 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Workspace
-          </p>
-        </div>
-
-        <nav aria-label="Main navigation" className="flex-1 space-y-1 px-3">
+        <nav
+          aria-label="Main navigation"
+          className="flex-1 space-y-1 px-3 pt-3"
+        >
           {navigation.map(({ label, href, icon: Icon }) => {
             const active =
               pathname === href ||
@@ -121,27 +124,37 @@ export function BankingShell({ children }: { children: React.ReactNode }) {
           })}
         </nav>
 
-        <div className="border-t border-sidebar-border p-4">
-          <div className="flex items-center gap-3 rounded-xl bg-sidebar-accent/60 p-3">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-sidebar-primary/15 text-sm font-semibold text-sidebar-primary">
-              YP
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium">Demo Customer</p>
-              <p className="truncate text-xs text-muted-foreground">
-                Personal banking
-              </p>
-            </div>
-            <ChevronDown className="size-4 text-muted-foreground" />
-          </div>
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="mt-3 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
-          >
-            <LogOut className="size-4" />
-            Sign out
-          </button>
+        <div className="border-t border-sidebar-border px-3 pb-2.5 pt-3">
+          <Accordion defaultValue={["item-1"]}>
+            <AccordionItem value="item-2">
+              <AccordionTrigger className="hover:no-underline py-0">
+                <div className="flex items-center gap-3 rounded-xl bg-sidebar-accent/60 p-3">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-sidebar-primary/15 text-sm font-semibold text-sidebar-primary">
+                    YP
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium">
+                      Demo Customer
+                    </p>
+                    <p className="truncate text-xs text-muted-foreground">
+                      Personal banking
+                    </p>
+                  </div>
+                  <ChevronDown className="size-4 text-muted-foreground" />
+                </div>
+              </AccordionTrigger>
+              <AccordionContent>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="mt-1.5 flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
+                >
+                  <LogOut className="size-4" />
+                  Sign out
+                </button>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </aside>
 

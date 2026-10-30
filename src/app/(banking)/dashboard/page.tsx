@@ -78,10 +78,6 @@ export default function DashboardPage() {
             Here&apos;s what&apos;s happening with your money.
           </p>
         </div>
-
-        <p className="text-xs text-muted-foreground">
-          Demo account · Fictional data
-        </p>
       </section>
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

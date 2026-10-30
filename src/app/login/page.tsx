@@ -94,9 +94,6 @@ export default function LoginPage() {
                 <span className="text-muted-foreground">{feature}</span>
               </div>
             ))}
-            <p className="pt-6 text-xs text-muted-foreground">
-              Bankflow is a frontend demonstration using mock banking data.
-            </p>
           </div>
         </section>
 
@@ -200,15 +197,9 @@ export default function LoginPage() {
                 <p className="text-sm font-medium">Demo sign-in</p>
                 <p className="mt-1 text-xs leading-5 text-muted-foreground">
                   Use any valid email address and a non-empty password.
-                  Authentication is simulated locally; no real account is
-                  verified.
                 </p>
               </div>
             </div>
-
-            <p className="mt-8 text-center text-xs text-muted-foreground">
-              Bankflow · Frontend banking demo
-            </p>
           </div>
         </section>
       </div>
